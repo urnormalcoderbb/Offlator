@@ -30,6 +30,10 @@ Offlator is an offline translation device built with a Raspberry Pi 4 that combi
 - One-click recording and translation
 - Safe shutdown capability
 
+# Offlator
+
+[Previous sections remain the same until Project Structure]
+
 ## Project Structure
 
 ```
@@ -61,6 +65,53 @@ offlator/
     ├── test_hardware.py
     ├── test_audio.py
     └── test_translation.py
+```
+
+### Create Project Structure
+
+```bash
+# Create main project directory
+mkdir offlator
+cd offlator
+
+# Create README and requirements files
+touch README.md
+touch requirements.txt
+
+# Create source directory structure
+mkdir -p src/{hardware,audio,translation}
+touch src/__init__.py
+touch src/main.py
+touch src/config.py
+
+# Create hardware module files
+touch src/hardware/__init__.py
+touch src/hardware/buttons.py
+touch src/hardware/display.py
+touch src/hardware/encoder.py
+
+# Create audio module files
+touch src/audio/__init__.py
+touch src/audio/recorder.py
+touch src/audio/speaker.py
+
+# Create translation module files
+touch src/translation/__init__.py
+touch src/translation/whisper_stt.py
+touch src/translation/translator.py
+
+# Create models directory structure
+mkdir -p models/{whisper,marian}
+
+# Create tests directory and files
+mkdir tests
+touch tests/__init__.py
+touch tests/test_hardware.py
+touch tests/test_audio.py
+touch tests/test_translation.py
+
+# Set proper permissions
+chmod 755 src tests models
 ```
 
 ## Technical Requirements
@@ -181,18 +232,15 @@ python3 src/main.py
 5. **Shutdown:**
    - Press Button 3 (GPIO 22) to safely shutdown
 
-## Error Handling
+## Status Information
 
-- LED indicators:
-  - Solid: System ready
-  - Blinking: Processing
-  - Rapid blinking: Error state
-
-- Display messages indicate:
-  - Recording status
-  - Processing status
-  - Error messages
-  - Translation results
+The OLED display shows:
+- Current translation mode (EN→HI or HI→EN)
+- Recording status
+- Processing status
+- Error messages
+- Original text
+- Translated text
 
 ## Contributing
 
